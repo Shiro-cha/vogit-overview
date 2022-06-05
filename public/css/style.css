@@ -1,0 +1,164 @@
+#logo{
+    cursor: pointer;
+}
+@media(max-width:768px){
+    .col-md-6.h-100{
+        height:50% !important;
+        overflow: scroll;
+    }
+    .vogit-logo.w-25{
+        width:50% !important;
+    }
+}
+.vogit-logo{
+	cursor:pointer;
+    transition: transform 2s;
+}
+.vogit-logo:hover{
+    transform:rotate(360deg);
+}
+.play{
+    transition:transform 60s linear;
+}
+.play:hover{
+    transform: rotate(10800deg);
+}
+button.btn.btn-primary{
+    transition:box-shadow 1s;
+}
+button.btn.btn-primary:hover{
+    box-shadow: 0px 0px 10px #010c1183;
+}
+#main li{
+
+    margin:20px 0px;
+    color:#dfe1e2;
+    cursor:pointer;
+    transition: all 1s ease;
+}
+#main ul.text-light li:hover{
+    color:#ffffff;
+    font-weight:bold;
+}
+
+
+#main nav.navbar-dark{
+    box-shadow:3px 2px 6px #010c1183;
+}
+#main .badge-counter{
+    font-size:9px;
+    position:absolute;
+    top:5px;
+    right:2px;
+}
+
+#main ul.text-dark li{
+    color:#5e5a5a;
+    font-weight:bold;
+    margin: 0 10px;
+}
+#main .folder-file{
+	width:70px;
+	height:70px;
+	position:relative;
+	margin:15px 5px;
+	cursor: pointer;
+	text-shadow: #5e5a5a;
+	transition:all 1s ease;
+}
+
+.path-container .path-arrow{
+	cursor:pointer;
+    padding:0 5px;
+    display: inline-block;
+    font-size:12px !important;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: transparent #0069d960 transparent transparent;
+}
+.dropdown-item{
+    cursor:pointer;
+}
+.folder-file:hover{
+    box-shadow: 2px 2px 1px #0069d960;
+    background-color: #63bce683;
+}
+.bg-grey{
+    background:#3a3939a6;
+}
+.text-grey{
+	color:#a0a0a0;
+}
+.upload , .download{
+	opacity:0;
+	transition:all 0.6s ease;
+}
+.folder-file:hover .upload ,.folder-file:hover .download{
+	opacity:1;
+}
+footer{
+    position:fixed;
+    bottom:10px;
+    right:0;
+    left:0;
+    height:70px;
+    width:70%;
+    z-index:1;
+    margin:0 auto;
+    opacity:0.01;
+    border-radius:24px;
+    transition: opacity 2s linear;
+}
+footer:hover{
+    opacity:1;
+}
+@media (max-width:525px){
+	#main input{
+	display: none;
+	}
+	#main .btn.btn-primary.py-0{
+	border-radius: 20px;
+	}
+	#file-container.flex-row{
+	flex-direction:column !important;
+	}
+	.folder-file.flex-column{
+		flex-direction:row !important;
+		
+	}
+	.folder-file{
+		width:100% !important;
+		align-items:center;
+		margin:2px 10px !important;
+		padding:5px 2px !important;
+	}
+	.icon{
+		font-size:30px !important;
+		margin-right:6px;
+		align-self:center;
+	}
+	.name{
+		font-size:20px;
+		align-self:center;
+	}
+	footer{
+		display:none !important;
+	}
+	footer:hover{
+		display:none !important;
+	}
+	
+	#main ul.text-light li{
+		display:flex;
+		flex-direction:column;
+		text-align:center;
+	
+	}
+	.vogit-logo img{
+		width:70px !important;
+	}
+	
+}
+.name{
+	font-size:5px !important;
+}

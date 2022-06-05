@@ -1,0 +1,100 @@
+
+
+  <div id="main" class="d-flex align-items-start h-100" ng-controller="main">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-primary h-100 p-0" style="width:105px;position:fixed;top:0;bottom:0">
+      <div class="container-fluid d-flex flex-column justify-content-center p-0">
+        <div class="navbar-brand d-flex align-items-center justify-content-center vogit-logo">
+          <img src="/images/logo.png" alt="Logo Vogit" style="width:100px">
+        </div>
+    <hr>
+        <ul class="nav navbar-nav text-light m-0">
+          <li class="nav-item" ng-click="openDir('','folder')"><i class="fas fa-home" style="font-size: 15px;"></i><span style="font-size: 14px;"> Home</span></li>
+          <li class="nav-item"><i class="fas fa-download" style="font-size: 15px;"></i><span style="font-size: 14px;"> Download</span></li>
+          <li class="nav-item"><i class="fas fa-atom" style="font-size: 15px;"></i><span style="font-size: 14px;"> Setting</span></li>
+          <li class="nav-item"><i class="far fa-warning" style="font-size: 15px;">?</i><span style="font-size: 14px;"> Help</span></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="d-flex flex-column w-100 h-100" style="position:relative;margin-left:120px">
+      <nav class="navbar navbar-light shadow navbar-expand static-top w-100 p-3" >
+        <div class="container-fluid">
+          <form class="form-inline navbar-search">
+            <div class="input-group">
+              <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+            </div>
+        </form>
+        <ul class="nav navbar-nav text-dark">
+          <li class="nav-item dropdown no-arrow mx-1" style="position:relative"><a href="#" class="nav-link" data-toggle="dropdown"><span class="badge badge-danger badge-counter">2</span><i class="fas fa-bell fa-fw" ></i></a>
+            <div class="dropdown-menu dropdown-menu-left dropdown-list dropdown-menu-right animated--grow-in " id="notification">
+              <div class="dropdown-item">Notification 1</div>
+              <div class="dropdown-item">Notification 1</div>
+              <div class="dropdown-item">Notification 1</div>
+            </div>
+          </li>
+          <li class="nav-item dropdown  " style="position:relative;border-left:2px solid #979595;"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span class="badge badge-danger badge-counter"></span><i class="fas fa-laptop fa-fw" ></i></a>
+             <div class="dropdown-menu dropdown-menu-left dropdown-list dropdown-menu-right fade" id="notification">
+              <div class="dropdown-item">Notification 1</div>
+              <div class="dropdown-item">Notification 1</div>
+              <div class="dropdown-item">Notification 1</div>
+            </div>  
+          </li>
+
+        </ul>
+        </div>
+      </nav>
+      <div class="container-fluid mt-3">
+        <div class="card shadow">
+          <div class="card-header d-flex justify-content-between text-dark"><span><button class="btn text-primary" ng-click="previous(parent)"><i class="fas fa-arrow-left"></i></button><button class="btn text-primary" ng-click="next(nextPath)"><i class="fas fa-arrow-right"></i></button>
+          
+          <span class="path-container">
+          <span ng-repeat="path in paths">
+          
+          	<span class="path-arrow" ng-click=changeDirectory(path.path) ng-bind="path.name"></span>
+          	</span>
+          </span>
+          </span>
+          
+          <span class="dropdown no-arrow mx-1"><button class="btn" data-toggle="dropdown"><i class="fas fa-ellipsis-v text-dark"></i></button>
+          <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-rigth">
+            <div class="dropdown-header">
+              Action here
+            </div>
+            <div class="dropdown-item">action 1</div>
+            <div class="dropdown-item">action 1</div>
+            <div class="dropdown-item">action 1</div>
+          </div>
+          </span>
+          </div>
+          <div class="card-body d-flex  flex-wrap flex-row text-grey pl-5 pb-5" id="file-container">
+        
+            <!-- upload -->
+            <div ng-repeat="file in files">
+            <div class="d-flex folder-file  flex-column mr-5 mb-5 " ng-show="!file.hidden" ng-click="openDir(file.path+'/'+file.realname,file.type,file.parent)">
+              
+              <i class="icon far fa-{{file.type}}" style="font-size:70px" ></i><span style="name font-size:7px;margin-bottom:10px;width:100%" ng-bind="file.name" ></span>
+              <span class="badge badge-info upload"  style="position:absolute;top:60%;left:0;"><i class="fas fa-upload"></i></span>
+            </div>
+            </div>
+    
+            
+          </div>
+        </div>
+      </div>
+
+      <footer class="shadow d-flex flex-row justify-content-center align-items-center bg-dark">
+        <span class="mr-3 text-light"><b>Storage : </b>96 / 320Gb free</span>
+        <div class="progress-bar w-50 bg-grey rounded " style="height:10px">
+          <div class="progress bg-primary h-100" style="width:65%"></div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
+
+
+
+
+  

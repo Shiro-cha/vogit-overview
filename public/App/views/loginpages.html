@@ -1,0 +1,17 @@
+
+
+    <form  method="post"class="w3-container w3-display-middle w3-card" autocomplete="off" id="login" ng-controller="logincontroller" name="login" novalidate>
+        <div class="w3-container w3-blue" style="position:absolute;right:0;left:0"><h4 class="card-title">Login to: 192.168.43.1</h4></div>
+        <div class="w3-container">
+            <label for="username">User</label>
+        <input type="text" class="w3-input" name="username" id="username" ng-model="username" required>
+        <p ng-show="login.username.$touched && login.username.$invalid">this is invalid</p>
+        <label for="password">Password</label>
+        <input type="password" class="w3-input" name="password" id="password" ng-model="password">
+        <button type="submit" class="w3-button w3-blue">Connect</button>
+        </div>
+
+    </form>
+
+
+
