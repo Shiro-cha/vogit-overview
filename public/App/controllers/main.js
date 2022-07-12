@@ -1,8 +1,15 @@
 app.controller("main",function($scope,$http , $rootScope){
 	$scope.manualPath=""
-	$scope.openDir = function(path,type){
+	$scope.hostisthere=false
+	$scope.hostcotainer=false
+	$scope.hostname = ""
+	$scope.addbtn="plus"
+	$scope.yes=false 
+	
+	
+	$scope.openDir = function(path,type,hostname){
 		if(type == "folder"){
-			$http.post(`/files`,{path:path}).then(function(res){
+			$http.post(`/files`,{path:path,hostname:hostname}).then(function(res){
 				if(typeof res.data != "string"){
 					let files = res.data.files
 					$rootScope.root = res.data.root
@@ -17,7 +24,7 @@ app.controller("main",function($scope,$http , $rootScope){
 						let i =""
 						$scope.paths.push({name:"Home",path:$rootScope.root})
 						let path = $scope.path.split(res.data.sep)
-						path = path.slice(3,path.length)
+						path = path.slice($rootScope.root.split(res.data.sep).length,path.length)
 						path.forEach((value)=>{
 							i = i + value+res.data.sep
 							
@@ -36,17 +43,47 @@ app.controller("main",function($scope,$http , $rootScope){
 		}
 		
 	}
-	
+	$scope.setHost = function(e){
+		$scope.openDir("","folder","e.target.value")
+	}
+	$scope.hostContainerFunc = function(){
+		if($scope.addbtn == "plus"){
+			$scope.hostcotainer=true
+			$scope.yes=true
+			$scope.addbtn="minus"
+			
+		}else{
+			$scope.hostcotainer=false
+			$scope.addbtn="plus"
+			$scope.hostIp = ""
+			$scope.hostisthere=false
+		}
+		
+	}
+	$scope.validateHost = function(e){
+		if(e.target.value && e.target.value !=" " && e.target.value !="  " && e.target.value !="  " && e.target.value !="  " && e.target.value !="  " ){
+			if(e.key === "Enter"){
+				$http.post("/ping",{hostname:e.target.value}).then(function(res){
+					$scope.hostname=e.target.value
+					$scope.hostisthere=true;
+					$scope.addbtn="minus"
+					$scope.yes=false
+					
+				})
+			}	
+		}
+		
+	}
 	$scope.previous = function(parent){
 		if(typeof parent == "string"){
-			$scope.openDir(parent,"folder")	
+			$scope.openDir(parent,"folder",$scope.hostname)	
 		}
 		
 	}
 	$scope.next = function(path){
 		if(path){
 			if(typeof path === "string"){
-				$scope.openDir(path,"folder")	
+				$scope.openDir(path,"folder",$scope.hostname)	
 			}	
 		}
 		
@@ -54,11 +91,11 @@ app.controller("main",function($scope,$http , $rootScope){
 	$scope.changeDirectory = function(path){
 		if(path){
 			if(typeof path === "string"){
-				$scope.openDir(path,"folder")	
+				$scope.openDir(path,"folder",$scope.hostname)	
 			}	
 		}
 	}
 	
 	// Default opendirectory
-	$scope.openDir("","folder")
+	$scope.openDir("","folder",$scope.hostname)
 })

@@ -1,6 +1,7 @@
-const files = require("./internal/files.router")
-
+const files = require("./files.router")
+const ping = require("./pong")
 
 module.exports = function(app){
     app.use("/files",files)
+	app.use("/ping",ping)
 }

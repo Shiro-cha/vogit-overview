@@ -28,19 +28,26 @@
         <ul class="nav navbar-nav text-dark">
           <li class="nav-item dropdown no-arrow mx-1" style="position:relative"><a href="#" class="nav-link" data-toggle="dropdown"><span class="badge badge-danger badge-counter">2</span><i class="fas fa-bell fa-fw" ></i></a>
             <div class="dropdown-menu dropdown-menu-left dropdown-list dropdown-menu-right animated--grow-in " id="notification">
-              <div class="dropdown-item">Notification 1</div>
-              <div class="dropdown-item">Notification 1</div>
-              <div class="dropdown-item">Notification 1</div>
+              <div class="dropdown-header">
+                Download and Upload
+              </div>
+              <div class="dropdown-item"><span class="bg-light border p-2"><span class="spinner-border" style="width:15px;height:15px"></span></span> <span class="text-dark text-right" style="display: inline-block;margin: 0 auto;">File name</span></div>
             </div>
           </li>
           <li class="nav-item dropdown  " style="position:relative;border-left:2px solid #979595;"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span class="badge badge-danger badge-counter"></span><i class="fas fa-laptop fa-fw" ></i></a>
-             <div class="dropdown-menu dropdown-menu-left dropdown-list dropdown-menu-right fade" id="notification">
-              <div class="dropdown-item">Notification 1</div>
-              <div class="dropdown-item">Notification 1</div>
-              <div class="dropdown-item">Notification 1</div>
+             <div class="dropdown-menu dropdown-menu-left dropdown-list dropdown-menu-right fade pt-0" id="notification">
+             <div class="dropdown-header bg-primary text-light">Avaible Host</div>
+             <div class="dropdown-item w-100  pl-1 mt-2"><input type="radio" class="form-control"  name="host" value=""  ng-click="hostname=''" style="width:1px!important;height:1px!important;display:inline"><span class="text-center w-100 text-dark" style="display:inline-block;margin:0 auto;font-weight:bold">MyPc</span></div>
+             <hr>
+             <hr>
+             <div class="dropdown-item w-100  pl-1 pr-1"  ng-show="hostcotainer">
+             <input type="text" class="form-control" ng-model="hostIp" placeholder="Host name here..." ng-show="!hostisthere" ng-keydown="validateHost($event)" style="margin:0 auto">
+             <input type="radio" class="form-control"   style="width:1px!important;height:1px!important;display:inline" name="host" ng-model="hostname" ng-show="hostisthere" value="{{hostIp}}" ng-click="setHost($event)"><span ng-show="hostisthere" class="text-center w-100 text-dark" style="display:inline-block;margin:0 auto;font-weight:bold">{{hostIp}}</span>
+              </div>
+              <hr>
+              <button class="btn w-100 border text-dark" ng-mouseenter="hostContainerFunc()" ng-disabled="yes"><span class="fas fa-{{addbtn}}"></span></button>
             </div>  
           </li>
-
         </ul>
         </div>
       </nav>
@@ -59,9 +66,9 @@
           <span class="dropdown no-arrow mx-1"><button class="btn" data-toggle="dropdown"><i class="fas fa-ellipsis-v text-dark"></i></button>
           <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-rigth">
             <div class="dropdown-header">
-              Action here
+              Download and Upload
             </div>
-            <div class="dropdown-item">action 1</div>
+            <div class="dropdown-item row"><div class="col-3"><span class="spinner-border"></span></div><div class="col-9">File name</div></div>
             <div class="dropdown-item">action 1</div>
             <div class="dropdown-item">action 1</div>
           </div>
@@ -71,9 +78,9 @@
         
             <!-- upload -->
             <div ng-repeat="file in files">
-            <div class="d-flex folder-file  flex-column mr-5 mb-5 " ng-show="!file.hidden" ng-click="openDir(file.path+'/'+file.realname,file.type,file.parent)">
+            <div class="d-flex folder-file  flex-column mr-5 mb-5 " ng-show="!file.hidden" ng-click="openDir(file.path+'/'+file.realname,file.type,hostname)">
               
-              <i class="icon far fa-{{file.type}}" style="font-size:70px" ></i><span style="name font-size:7px;margin-bottom:10px;width:100%" ng-bind="file.name" ></span>
+              <i class="icon far fa-{{file.type}}" style="font-size:70px" ></i><span style="font-size:14px;margin-bottom:10px;width:100%" ng-bind="file.name" ></span>
               <span class="badge badge-info upload"  style="position:absolute;top:60%;left:0;"><i class="fas fa-upload"></i></span>
             </div>
             </div>
